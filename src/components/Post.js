@@ -62,12 +62,11 @@ class Post extends Component {
         return (
             <div className={classes.container}>
                 <ReactMarkdown 
-                    source={post.post.replace(/\n/g, "\n\n")}
+                    source={post.post}
                     className={classes.content}
                     renderers={{
                         code: (node) => {
-                            console.log(node)
-                            return <p><code className={`prettyprint ${node.language}-html ${classes.code}`}>{node.value ? node.value.replace(/\\n/g, "\n") : null }</code></p>
+                            return <p><code className={`prettyprint ${node.language}-html ${classes.code}`}>{ node.value }</code></p>
                         }
                     }}
                 />
