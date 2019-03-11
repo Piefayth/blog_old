@@ -9,8 +9,10 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { getPost } from '../actions/posts'
 import { withStyles } from '@material-ui/styles';
+import env from '../utils/env'
 
 const styles = (theme) => { 
+    console.log(theme)
     return {
         code: {
             display: 'block',
@@ -20,6 +22,10 @@ const styles = (theme) => {
         content: {
             'text-align': 'left',
             'align-self': 'center',
+            fontFamily: theme.typography.body1Next.fontFamily,
+            fontSize: theme.typography.body1Next.fontSize,
+            lineHeight: theme.typography.body1Next.lineHeight,
+            fontWeight: theme.typography.body1Next.fontWeight,
         },
         container: {
             display: 'flex',
@@ -80,7 +86,7 @@ class Post extends Component {
             <Card className={classes.container}>
                 <CardMedia
                     className={classes.media}
-                    image={`/static/media/${post.meta.image}.jpg`}
+                    image={`${env.url}/media/${post.meta.image}.jpg`}
                 />
                 <Typography className={classes.postTitle} variant='h2' component="p">
                     { post.meta.title }

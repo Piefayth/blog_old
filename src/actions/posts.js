@@ -14,7 +14,7 @@ export const getPostError = error => ({
 })
 
 export const getPost = (id) => (dispatch) => {
-    return axios.get(`${env.url}${id}.json`)
+    return axios.get(`${env.url}/posts/${id}.json`)
         .then(ok => (dispatch(getPostSuccess(ok.data))))
         .catch(error => (dispatch(getPostError(error))))
 }
@@ -30,7 +30,7 @@ export const getPostsError = error => ({
 })
 
 export const getPosts = () => (dispatch) => {
-    return axios.get(`${env.url}index.json`)
+    return axios.get(`${env.url}/posts/index.json`)
         .then(ok => (dispatch(getPostsSuccess(ok.data))))
         .catch(error => (dispatch(getPostsError(error))))
 }

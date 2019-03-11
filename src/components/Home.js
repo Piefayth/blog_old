@@ -59,12 +59,17 @@ const styles = (theme) => {
         },
         peek: {
             margin: 25,
+            fontFamily: theme.typography.body1Next.fontFamily,
+            fontSize: 14,
+            fontWeight: theme.typography.body1Next.fontWeight,
+            lineHeight: theme.typography.body1Next.lineHeight,
         },
         cardTitle: {
             color: theme.palette.text,
             '&:hover': {
                 textDecoration: 'none',
             },
+            fontSize: 36,
         },
         cardTitleContainer: {
             margin: 20,
@@ -90,7 +95,7 @@ class Home extends Component {
                                     image={`/static/media/${post.meta.image}.jpg`}
                                 />
                             <p className={classes.cardTitleContainer}>
-                                <Link to={`/posts/${post.meta.id}`} variant="h5" component={RouterLink} className={classes.cardTitle}> {post.meta.title} </Link>
+                                <Link to={`/posts/${post.meta.id}`} variant="h2" component={RouterLink} className={classes.cardTitle}> {post.meta.title} </Link>
                             </p>
                             <Typography className={classes.peek} component="p">
                                 { post.meta.peek }
