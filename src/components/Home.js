@@ -4,10 +4,71 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { getPosts } from '../actions/posts'
 import { withStyles } from '@material-ui/styles';
-import { Link } from 'react-router-dom'
+import { Link as RouterLink } from 'react-router-dom'
+import Link from '@material-ui/core/Link';
+import Typography from '@material-ui/core/Typography';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import CardMedia from '@material-ui/core/CardMedia';
 
 const styles = (theme) => { 
     return {
+        root: {
+            flexGrow: 1,
+            display: 'flex',
+            'flex-wrap': 'wrap',
+            'justify-content': 'center',
+            'align-self': 'center',
+            [theme.breakpoints.down('xl')]: {
+                width: '95%',
+            },
+            [theme.breakpoints.down('lg')]: {
+                width: '95%',
+            },
+            [theme.breakpoints.down('md')]: {
+                width: '95%',
+            },
+            [theme.breakpoints.down('sm')]: {
+                width: '95%',
+            },
+            [theme.breakpoints.down('xs')]: {
+                width: '95%',
+            },
+            marginTop: 20,
+        },
+        card: {
+            [theme.breakpoints.down('xl')]: {
+                'flex-basis': '33%',
+            },
+            [theme.breakpoints.down('lg')]: {
+                'flex-basis': '33%',
+            },
+            [theme.breakpoints.down('md')]: {
+                'flex-basis': '50%',
+            },
+            [theme.breakpoints.down('sm')]: {
+                'flex-basis': '100%',
+            },
+            [theme.breakpoints.down('xs')]: {
+                'flex-basis': '100%',
+            },
+            margin: '5px',
+        },
+        media: {
+            height: 140,
+        },
+        peek: {
+            margin: 25,
+        },
+        cardTitle: {
+            color: theme.palette.text,
+            '&:hover': {
+                textDecoration: 'none',
+            },
+        },
+        cardTitleContainer: {
+            margin: 20,
+        }
     }
 }
 
@@ -20,9 +81,23 @@ class Home extends Component {
         const { classes, posts } = this.props;
 
         return (
-            <div>
-                {posts.map((post) => {
-                    return <p key={`${post.meta.id}`}>{ post.meta.id }. <Link to={`/posts/${post.meta.id}`}> {post.meta.title} </Link> </p>
+            <div className={classes.root}>
+                {posts.map((post, i) => {
+                    return (
+                        <Card key={`${post.meta.id}${i + 1}`} className={classes.card}>
+                                <CardMedia
+                                    className={classes.media}
+                                    image={`/static/media/${post.meta.image}.jpg`}
+                                />
+                            <p className={classes.cardTitleContainer}>
+                                <Link to={`/posts/${post.meta.id}`} variant="h5" component={RouterLink} className={classes.cardTitle}> {post.meta.title} </Link>
+                            </p>
+                            <Typography className={classes.peek} component="p">
+                                { post.meta.peek }
+                            </Typography>
+                        </Card>
+                        
+                    )
                 })}
             </div>
         )

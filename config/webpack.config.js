@@ -474,6 +474,9 @@ module.exports = function(webpackEnv) {
       new CopyPlugin([{
         from: 'public/posts',
         to: 'static/posts'
+      }, {
+        from: 'public/media',
+        to: 'static/media'
       }]),
       new HtmlWebpackPlugin(
         Object.assign(

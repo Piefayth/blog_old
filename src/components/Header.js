@@ -1,36 +1,42 @@
-import React from 'react'
-import logo from '../assets/logo.svg'
-import styled from '@emotion/styled'
-import { keyframes } from '@emotion/core'
+import React, { Component } from 'react'
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Link from '@material-ui/core/Link';
+import { Link as RouterLink } from 'react-router-dom'
+import { withStyles } from '@material-ui/core/styles';
+import PropTypes from 'prop-types'
+import theme from '../styles/theme'
 
-const rotate360 = keyframes`
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-`
-
-const TopBar = styled.div`
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: #fff;
-
-  .redux-logo {
-    animation: ${rotate360} infinite 20s linear;
-    height: 80px;
-  }
-`
-
-function Header() {
-  return (
-    <TopBar>
-      <img src={logo} className="redux-logo" alt="logo" />
-      <h2>Welcome to Create Redux App</h2>
-    </TopBar>
-  )
+const styles = {
+  root: {
+    backgroundColor: theme.palette.accent,
+  },
+  hoverNone: {
+    textDecoration: 'none',
+    '&:hover': {
+      textDecoration: 'none',
+    }
+  },
 }
 
-export default Header
+class Header extends Component {
+  render() {
+    const { classes } = this.props;
+
+    return (
+      <AppBar className={classes.root} position="relative" >
+        <Toolbar>
+          <Link to="/" component={RouterLink} variant="h5" color="inherit" className={classes.hoverNone}>
+            { "Piefayth's Devblog" }
+          </Link>
+        </Toolbar>
+      </AppBar>
+    )
+  }
+}
+
+Header.propTypes = {
+  classes: PropTypes.object.isRequired,
+}
+
+export default withStyles(styles)(Header)

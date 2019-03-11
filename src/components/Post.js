@@ -1,6 +1,10 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import ReactMarkdown from 'react-markdown'
+import Typography from '@material-ui/core/Typography';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import CardMedia from '@material-ui/core/CardMedia';
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { getPost } from '../actions/posts'
@@ -15,6 +19,15 @@ const styles = (theme) => {
         },
         content: {
             'text-align': 'left',
+            'align-self': 'center',
+        },
+        container: {
+            display: 'flex',
+            'flex-direction': 'column',
+            'align-items': 'center',
+            'align-self': 'center',
+            padding: 20,
+            marginTop: 20,
             [theme.breakpoints.down('xl')]: {
                 width: '60%',
             },
@@ -28,13 +41,17 @@ const styles = (theme) => {
                 width: '80%',
             },
             [theme.breakpoints.down('xs')]: {
-                width: '95%',
+                width: '88%',
             }
         },
-        container: {
-            display: 'flex',
-            'flex-direction': 'column',
-            'align-items': 'center',
+        media: {
+            height: 300,
+            width: '100%',
+        },
+        postTitle: {
+            color: theme.palette.text,
+            marginTop: 25,
+            marginBottom: 25,
         }
     }
 }
@@ -60,7 +77,14 @@ class Post extends Component {
         }
 
         return (
-            <div className={classes.container}>
+            <Card className={classes.container}>
+                <CardMedia
+                    className={classes.media}
+                    image={`/static/media/${post.meta.image}.jpg`}
+                />
+                <Typography className={classes.postTitle} variant='h2' component="p">
+                    { post.meta.title }
+                </Typography>
                 <ReactMarkdown 
                     source={post.post}
                     className={classes.content}
@@ -70,7 +94,7 @@ class Post extends Component {
                         }
                     }}
                 />
-            </div>
+            </Card>
         )
     }
 }
