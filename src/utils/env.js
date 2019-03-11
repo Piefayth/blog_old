@@ -7,4 +7,4 @@ export default {
     prodUrl,
     devUrl,
     env
-}
+} 
