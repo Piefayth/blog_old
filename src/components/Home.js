@@ -92,7 +92,7 @@ class Home extends Component {
                         <Card key={`${post.meta.id}${i + 1}`} className={classes.card}>
                                 <CardMedia
                                     className={classes.media}
-                                    image={`/static/media/${post.meta.image}.jpg`}
+                                    image={`${env.url}/media/${post.meta.image}.jpg`}
                                 />
                             <p className={classes.cardTitleContainer}>
                                 <Link to={`/posts/${post.meta.id}`} variant="h2" component={RouterLink} className={classes.cardTitle}> {post.meta.title} </Link>
