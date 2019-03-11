@@ -5,10 +5,14 @@ import configureStore from './store'
 import Routes from './routes'
 import './styles/globalStyles.css'
 import * as serviceWorker from './utils/serviceWorker'
+import { ThemeProvider } from '@material-ui/styles';
+import theme from './styles/theme'
 
 render(
   <Provider store={configureStore()}>
-    <Routes />
+    <ThemeProvider theme={theme}>
+      <Routes />
+    </ThemeProvider>
   </Provider>,
   document.getElementById('root'),
 )

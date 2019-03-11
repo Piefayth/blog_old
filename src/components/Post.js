@@ -6,19 +6,36 @@ import { bindActionCreators } from 'redux'
 import { getPost } from '../actions/posts'
 import { withStyles } from '@material-ui/styles';
 
-const styles = {
-    code: {
-        display: 'block',
-        'white-space': 'pre-wrap'
-    },
-    content: {
-        'text-align': 'left',
-        width: '800px',
-    },
-    container: {
-        display: 'flex',
-        'flex-direction': 'column',
-        'align-items': 'center',
+const styles = (theme) => { 
+    return {
+        code: {
+            display: 'block',
+            'white-space': 'pre-wrap',
+            padding: '5px'
+        },
+        content: {
+            'text-align': 'left',
+            [theme.breakpoints.down('xl')]: {
+                width: '60%',
+            },
+            [theme.breakpoints.down('lg')]: {
+                width: '70%',
+            },
+            [theme.breakpoints.down('md')]: {
+                width: '70%',
+            },
+            [theme.breakpoints.down('sm')]: {
+                width: '80%',
+            },
+            [theme.breakpoints.down('xs')]: {
+                width: '95%',
+            }
+        },
+        container: {
+            display: 'flex',
+            'flex-direction': 'column',
+            'align-items': 'center',
+        }
     }
 }
 
@@ -42,7 +59,7 @@ class Post extends Component {
                     className={classes.content}
                     renderers={{
                         code: (node) => {
-                            return <p><code className={`prettyprint ${node.language}-html ${classes.code}`}> {node.value} </code></p>
+                            return <p><code className={`prettyprint ${node.language}-html ${classes.code}`}>{node.value}</code></p>
                         }
                     }}
                 />
