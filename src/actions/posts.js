@@ -14,7 +14,7 @@ export const getPostError = error => ({
 })
 
 export const getPost = (id) => (dispatch) => {
-    axios.get(`/posts/${id}.md`)
+    axios.get(`/static/posts/${id}.md`)
         .then(ok => (dispatch(getPostSuccess(ok.data))))
         .catch(error => (dispatch(getPostError(error))))
 }

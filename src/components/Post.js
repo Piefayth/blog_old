@@ -39,7 +39,6 @@ const mapDispatchToProps = (dispatch) => (bindActionCreators({
 }, dispatch))
 
 const mapStateToProps = (state) => {
-    // 
     return {
         post: state.posts.post,
     }

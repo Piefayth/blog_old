@@ -471,6 +471,10 @@ module.exports = function(webpackEnv) {
     },
     plugins: [
       // Generates an `index.html` file with the <script> injected.
+      new CopyPlugin([{
+        from: 'public/posts',
+        to: 'static/posts'
+      }]),
       new HtmlWebpackPlugin(
         Object.assign(
           {},
