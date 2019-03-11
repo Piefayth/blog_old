@@ -22,7 +22,7 @@ class Home extends Component {
         return (
             <div>
                 {posts.map((post) => {
-                    return <p>{ post.id }. <Link to={`/posts/${post.id}`}> {post.title} </Link> </p>
+                    return <p key={`${post.meta.id}`}>{ post.meta.id }. <Link to={`/posts/${post.meta.id}`}> {post.meta.title} </Link> </p>
                 })}
             </div>
         )
@@ -45,7 +45,6 @@ const mapDispatchToProps = (dispatch) => (bindActionCreators({
 }, dispatch))
 
 const mapStateToProps = (state) => {
-    console.log(state)
     return {
         posts: state.posts.posts,
     }

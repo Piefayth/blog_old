@@ -43,7 +43,9 @@ class Post extends Component {
     componentDidMount() {
         const postId = this.props.match.params.id
         this.props.getPost(postId)
-        window.PR.prettyPrint()
+            .then(() => {
+                window.PR.prettyPrint()
+            })
     }
 
     componentDidUpdate() {
@@ -53,14 +55,19 @@ class Post extends Component {
     render() {
         const { classes, post } = this.props
 
+        if (!post.post) {
+            return null
+        }
+
         return (
             <div className={classes.container}>
                 <ReactMarkdown 
-                    source={post}
+                    source={post.post.replace(/\n/g, "\n\n")}
                     className={classes.content}
                     renderers={{
                         code: (node) => {
-                            return <p><code className={`prettyprint ${node.language}-html ${classes.code}`}>{node.value}</code></p>
+                            console.log(node)
+                            return <p><code className={`prettyprint ${node.language}-html ${classes.code}`}>{node.value ? node.value.replace(/\\n/g, "\n") : null }</code></p>
                         }
                     }}
                 />
@@ -76,12 +83,12 @@ Post.propTypes = {
         }).isRequired
     }).isRequired,
     getPost: PropTypes.func.isRequired,
-    post: PropTypes.string,
+    post: PropTypes.object,
     classes: PropTypes.object.isRequired,
 }
 
 Post.defaultProps = {
-    post: "",
+    post: {},
 }
 
 const mapDispatchToProps = (dispatch) => (bindActionCreators({

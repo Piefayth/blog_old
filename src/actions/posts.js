@@ -14,14 +14,7 @@ export const getPostError = error => ({
 })
 
 export const getPost = (id) => (dispatch) => {
-    let uri
-    if (env.env === 'development') {
-        uri = env.devUrl
-    } else {
-        uri = env.prodUrl
-    }
-    
-    axios.get(`${uri}${id}.md`)
+    return axios.get(`${env.url}${id}.json`)
         .then(ok => (dispatch(getPostSuccess(ok.data))))
         .catch(error => (dispatch(getPostError(error))))
 }
@@ -37,14 +30,7 @@ export const getPostsError = error => ({
 })
 
 export const getPosts = () => (dispatch) => {
-    let uri
-    if (env.env === 'development') {
-        uri = env.devUrl
-    } else {
-        uri = env.prodUrl
-    }
-
-    axios.get(`${uri}index.json`)
+    return axios.get(`${env.url}index.json`)
         .then(ok => (dispatch(getPostsSuccess(ok.data))))
         .catch(error => (dispatch(getPostsError(error))))
 }
