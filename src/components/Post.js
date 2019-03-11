@@ -4,6 +4,17 @@ import ReactMarkdown from 'react-markdown'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { getPost } from '../actions/posts'
+import { withStyles } from '@material-ui/styles';
+
+const styles = {
+    code: {
+        display: 'block',
+        'white-space': 'pre-wrap'
+    },
+    content: {
+        'text-align': 'left',
+    }
+}
 
 class Post extends Component {
     componentDidMount() {
@@ -12,9 +23,19 @@ class Post extends Component {
     }
     
     render() {
+        const { classes, post } = this.props
+
         return (
             <div>
-                <ReactMarkdown source={this.props.post} />
+                <ReactMarkdown 
+                    source={post}
+                    className={classes.content}
+                    renderers={{
+                        code: (node) => {
+                            return <p><code className={`prettyprint ${node.language}-html ${classes.code}`}> {node.value} </code></p>
+                        }
+                    }}
+                />
             </div>
         )
     }
@@ -28,6 +49,7 @@ Post.propTypes = {
     }).isRequired,
     getPost: PropTypes.func.isRequired,
     post: PropTypes.string,
+    classes: PropTypes.object.isRequired,
 }
 
 Post.defaultProps = {
@@ -44,4 +66,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Post)
+export default(connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(Post)))

@@ -16,6 +16,7 @@
     "DEBUG": false
   },
   "rules": {
+    "react/forbid-prop-types": 0,
     "arrow-body-style": 0,
     "no-unused-vars": 0,
     "global-require": 0,
