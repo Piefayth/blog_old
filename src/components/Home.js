@@ -3,13 +3,14 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { getPosts } from '../actions/posts'
-import { withStyles } from '@material-ui/styles';
+import { withStyles } from '@material-ui/styles'
 import { Link as RouterLink } from 'react-router-dom'
-import Link from '@material-ui/core/Link';
-import Typography from '@material-ui/core/Typography';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
+import Link from '@material-ui/core/Link'
+import Typography from '@material-ui/core/Typography'
+import Card from '@material-ui/core/Card'
+import CardContent from '@material-ui/core/CardContent'
+import CardMedia from '@material-ui/core/CardMedia'
+import env from '../utils/env'
 
 const styles = (theme) => { 
     return {

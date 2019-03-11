@@ -6,7 +6,6 @@ import { Link as RouterLink } from 'react-router-dom'
 import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types'
 import theme from '../styles/theme'
-import env from '../utils/env'
 
 const styles = {
   root: {
