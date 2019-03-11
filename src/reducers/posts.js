@@ -16,6 +16,18 @@ export default function posts(state = initialState, action) {
             error: action.error,
         }
     }
+    case ActionTypes.GET_POSTS_SUCCESS:
+        return {
+            ...state,
+            posts: action.posts
+        }
+    case ActionTypes.GET_POSTS_ERROR: {
+        return {
+            ...state,
+            posts: null,
+            error: action.error,
+        }
+    }
     default:
         return state
   }
