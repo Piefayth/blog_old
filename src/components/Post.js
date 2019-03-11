@@ -13,6 +13,12 @@ const styles = {
     },
     content: {
         'text-align': 'left',
+        width: '800px',
+    },
+    container: {
+        display: 'flex',
+        'flex-direction': 'column',
+        'align-items': 'center',
     }
 }
 
@@ -21,12 +27,16 @@ class Post extends Component {
         const postId = this.props.match.params.id
         this.props.getPost(postId)
     }
+
+    componentDidUpdate() {
+        window.PR.prettyPrint()
+    }
     
     render() {
         const { classes, post } = this.props
 
         return (
-            <div>
+            <div className={classes.container}>
                 <ReactMarkdown 
                     source={post}
                     className={classes.content}
