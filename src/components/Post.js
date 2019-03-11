@@ -43,6 +43,7 @@ class Post extends Component {
     componentDidMount() {
         const postId = this.props.match.params.id
         this.props.getPost(postId)
+        window.PR.prettyPrint()
     }
 
     componentDidUpdate() {
