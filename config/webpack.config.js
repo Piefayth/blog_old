@@ -23,6 +23,7 @@ const getClientEnvironment = require('./env');
 const ModuleNotFoundPlugin = require('react-dev-utils/ModuleNotFoundPlugin');
 const ForkTsCheckerWebpackPlugin = require('react-dev-utils/ForkTsCheckerWebpackPlugin');
 const typescriptFormatter = require('react-dev-utils/typescriptFormatter');
+const CopyPlugin = require('copy-webpack-plugin')
 
 
 // Source maps are resource heavy and can cause out of memory issue for large source files.
@@ -318,10 +319,6 @@ module.exports = function(webpackEnv) {
             // smaller than specified limit in bytes as data URLs to avoid requests.
             // A missing `test` is equivalent to a match.
             {
-              test: [/\.md$/],
-              use: require.resolve('raw-loader'),
-            },
-            {
               test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
               loader: require.resolve('url-loader'),
               options: {
@@ -461,7 +458,7 @@ module.exports = function(webpackEnv) {
               // its runtime that would otherwise be processed through "file" loader.
               // Also exclude `html` and `json` extensions so they get processed
               // by webpacks internal loaders.
-              exclude: [/\.(js|mjs|jsx|ts|tsx)$/, /\.html$/, /\.json$/],
+              exclude: [/\.(js|mjs|jsx|ts|tsx|md)$/, /\.html$/, /\.json$/],
               options: {
                 name: 'static/media/[name].[hash:8].[ext]',
               },

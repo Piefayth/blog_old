@@ -1,14 +1,20 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import ReactMarkdown from 'react-markdown'
-import * as one from '../posts/1.md'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { getPost } from '../actions/posts'
 
 class Post extends Component {
+    componentDidMount() {
+        const postId = this.props.match.params.id
+        this.props.getPost(postId)
+    }
+    
     render() {
-        // const postId = this.props.match.params.id
         return (
             <div>
-                <ReactMarkdown source={one} />,
+                <ReactMarkdown source={this.props.post} />
             </div>
         )
     }
@@ -19,7 +25,24 @@ Post.propTypes = {
         params: PropTypes.shape({
             id: PropTypes.string.isRequired,
         }).isRequired
-    }).isRequired
+    }).isRequired,
+    getPost: PropTypes.func.isRequired,
+    post: PropTypes.string,
 }
 
-export default Post
+Post.defaultProps = {
+    post: "",
+}
+
+const mapDispatchToProps = (dispatch) => (bindActionCreators({
+    getPost
+}, dispatch))
+
+const mapStateToProps = (state) => {
+    // 
+    return {
+        post: state.posts.post,
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Post)
