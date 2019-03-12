@@ -16,7 +16,12 @@ const styles = (theme) => {
         code: {
             display: 'block',
             'white-space': 'pre-wrap',
+            'word-wrap': 'break-word', 
             padding: '15px'
+        },
+        inlineCode: {
+            'white-space': 'pre-wrap',
+            'word-wrap': 'break-word', 
         },
         content: {
             'text-align': 'left',
@@ -57,6 +62,12 @@ const styles = (theme) => {
         postTitle: {
             color: theme.palette.text,
             marginTop: 25,
+            width: '90%',
+            'white-space': 'pre-wrap',
+            'word-wrap': 'break-word', 
+            [theme.breakpoints.down('xs')]: {
+                fontSize: 44,
+            }
         },
         postSubtitle: {
             marginTop: 10,
@@ -115,6 +126,9 @@ class Post extends Component {
                     renderers={{
                         code: (node) => {
                             return <p><code className={`prettyprint ${node.language}-html ${classes.code}`}>{ node.value }</code></p>
+                        },
+                        inlineCode: (node) => {
+                            return <span><code className={classes.inlineCode}>{ node.value }</code></span>
                         },
                         image: (node) => {
                             return (
