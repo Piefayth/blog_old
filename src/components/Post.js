@@ -21,6 +21,7 @@ const styles = (theme) => {
         content: {
             'text-align': 'left',
             'align-self': 'center',
+            width: '100%',
             fontFamily: theme.typography.body1Next.fontFamily,
             fontSize: theme.typography.body1Next.fontSize,
             lineHeight: theme.typography.body1Next.lineHeight,
