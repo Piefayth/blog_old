@@ -127,9 +127,9 @@ post: |
 
     for ...
         if (system.type == typeof(FixedUpdate)) {
-            PlayerLoopSystem fixedUpdateSystem = system;
+            PlayerLoopSystem fixedUpdateSystem = systems[i];
         
-            List<PlayerLoopSystem> fixedUpdateSystems = new List<PlayerLoopSystem>(system.subSystemList);
+            List<PlayerLoopSystem> fixedUpdateSystems = new List<PlayerLoopSystem>(fixedUpdateSystem.subSystemList);
             PlayerLoopSystem customPlayerLoop = new PlayerLoopSystem();
             customPlayerLoop.type = typeof(CustomUpdateSystem);
             customPlayerLoop.updateDelegate = customUpdateSystem.MyFixedUpdate;
