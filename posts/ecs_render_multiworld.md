@@ -24,6 +24,7 @@ post: |
     Client client;
     Server server;
     PresentationSystemGroup clientRender;
+    SimulationSystemGroup clientSim;
 
     void Awake() {
         DefaultWorldInitialization.Initialize("Server World", false);
@@ -142,7 +143,7 @@ post: |
     ScriptBehaviourUpdateOrder.SetPlayerLoop(playerLoopSystem);
     ```
 
-    The above code creates a new `PlayerLoopSystem` and configures it to use a user-defined type for its execution logic. Then it inserts the user defined `PlayerLoopSystem` into the `FixedUpdate` loop subsystems. Note that this change does NOT automatically propagate back to ScriptbehaviourUpdateOrder, so we must call `SetPlayerLoop` with our modified playerLoopSystem. But what's a "`CustomUpdateSystem`"?
+    The above code creates a new `PlayerLoopSystem` and configures it to use a user-defined type for its execution logic. Then it inserts the user defined `PlayerLoopSystem` into the `FixedUpdate` loop subsystems. Note that this change does NOT automatically propagate back to ScriptBehaviourUpdateOrder, so we must call `SetPlayerLoop` with our modified playerLoopSystem. But what's a "`CustomUpdateSystem`"?
 
     It can be anything you want that can provide a delegate! In this case, I'm using the following:
 
