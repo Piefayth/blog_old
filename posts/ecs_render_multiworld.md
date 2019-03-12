@@ -126,7 +126,7 @@ post: |
     CustomUpdateSystem customUpdateSystem = new CustomUpdateSystem(new ComponentSystem[] { client, server });
 
     for ...
-        if (system.type == typeof(FixedUpdate)) {
+        if (systems[i].type == typeof(FixedUpdate)) {
             PlayerLoopSystem fixedUpdateSystem = systems[i];
         
             List<PlayerLoopSystem> fixedUpdateSystems = new List<PlayerLoopSystem>(fixedUpdateSystem.subSystemList);
