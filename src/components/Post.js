@@ -97,6 +97,8 @@ class Post extends Component {
 
     componentDidUpdate() {
         window.PR.prettyPrint()
+        console.log(this.props.post);
+        document.title = this.props.post.meta.title
     }
     
     render() {
@@ -132,9 +134,9 @@ class Post extends Component {
                         },
                         image: (node) => {
                             return (
-                                <div className={classes.markdownImageContainer}>
+                                <span className={classes.markdownImageContainer}>
                                     <img className={classes.markdownImage} src={`${env.url}/media/${node.src}.jpg`} alt={node.alt} />
-                                </div>
+                                </span>
                             )
                         }
                     }}

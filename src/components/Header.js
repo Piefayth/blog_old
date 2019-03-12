@@ -20,6 +20,10 @@ const styles = {
 }
 
 class Header extends Component {
+  componentDidMount() {
+    document.title = "Piefayth's Devblog"
+  }
+
   render() {
     const { classes } = this.props;
 
