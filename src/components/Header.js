@@ -6,6 +6,7 @@ import { Link as RouterLink } from 'react-router-dom'
 import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types'
 import theme from '../styles/theme'
+import { Helmet } from "react-helmet";
 
 const styles = {
   root: {
@@ -20,10 +21,6 @@ const styles = {
 }
 
 class Header extends Component {
-  componentDidMount() {
-    document.title = "Piefayth's Devblog"
-  }
-
   render() {
     const { classes } = this.props;
 

@@ -5,6 +5,7 @@ import Typography from '@material-ui/core/Typography';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
+import { Helmet } from "react-helmet";
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { getPost } from '../actions/posts'
@@ -97,7 +98,6 @@ class Post extends Component {
 
     componentDidUpdate() {
         window.PR.prettyPrint()
-        console.log(this.props.post);
         document.title = this.props.post.meta.title
     }
     
@@ -110,6 +110,10 @@ class Post extends Component {
 
         return (
             <Card className={classes.container}>
+                <Helmet>
+                    <meta name="keywords" content="unity, ecs, unity ecs, game development, gamedev" />
+                    <meta name="description" content={post.meta.peek} />
+                </Helmet>
                 <CardMedia
                     className={classes.media}
                     image={`${env.url}/media/${post.meta.image}.jpg`}

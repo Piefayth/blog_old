@@ -10,6 +10,7 @@ import Typography from '@material-ui/core/Typography'
 import Card from '@material-ui/core/Card'
 import CardContent from '@material-ui/core/CardContent'
 import CardMedia from '@material-ui/core/CardMedia'
+import { Helmet } from "react-helmet";
 import env from '../utils/env'
 
 const styles = (theme) => { 
@@ -81,13 +82,18 @@ const styles = (theme) => {
 class Home extends Component {
     componentDidMount() {
         this.props.getPosts()
+        document.title = "Piefayth's Devblog"
     }
-
+    
     render() {
         const { classes, posts } = this.props;
 
         return (
             <div className={classes.root}>
+                <Helmet>
+                    <meta name="keywords" content="unity, ecs, unity ecs, game development, gamedev" />
+                    <meta name="description" content="A blog (mostly) about game development in Unity." />
+                </Helmet>
                 {posts.map((post, i) => {
                     return (
                         <Card key={`${post.meta.id}${i + 1}`} className={classes.card}>
