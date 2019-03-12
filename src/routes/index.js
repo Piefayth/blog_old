@@ -19,7 +19,7 @@ export const history = createBrowserHistory()
 
 function Routes() {
   return (
-    <HashRouter>
+    <HashRouter hashType="hashbang">
       <Container>
           <Header />
           <Switch>

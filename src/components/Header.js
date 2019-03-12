@@ -1,12 +1,11 @@
 import React, { Component } from 'react'
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Link from '@material-ui/core/Link';
+import AppBar from '@material-ui/core/AppBar'
+import Toolbar from '@material-ui/core/Toolbar'
+import Link from '@material-ui/core/Link'
 import { Link as RouterLink } from 'react-router-dom'
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles'
 import PropTypes from 'prop-types'
 import theme from '../styles/theme'
-import { Helmet } from "react-helmet";
 
 const styles = {
   root: {
