@@ -11,7 +11,7 @@ post: |
 
     ***
 
-    Anyone who has been working with ECS for a while will tell you, you're regularly nursing your project back to health from a bad case of API churn. Most recently for me, I had to convert my project to use `RenderMeshV2`. Previously, I had a custom update loop where I manually updated every system in a World created with `new World()`. It's not the most ergonomic way to go about it, but it works and you're always certain what order your systems execute in. The old transform and render systems were easy to create and update manually, but I just couldn't get this approach working with `RenderMeshV2`.
+    Anyone who has been working with ECS for a while will tell you, you're regularly nursing your project back to health from a bad case of API churn. Most recently for me, I had to convert my project to use `RenderMeshV2`. Previously, I had a custom update loop where I had a client and server world each created with `new World()` and I manually updated every system. It's not the most ergonomic way to go about it, but it works and you're always certain what order your systems execute in. The old transform and render systems were easy to create and update manually, but I just couldn't get this approach working with `RenderMeshV2`.
 
     A little googling led me to the `DefaultWorldInitialization.Initialize` method. Using this to create your worlds creates all the default systems you'd find in a regular world. Systems like, say, `RenderMeshV2` or the `SimulationSystemGroup`. Great. Create the client world, create the server world, then just stick them in the update loop with `ScriptBehaviourUpdateOrder.UpdatePlayerLoop(params World[])`!
 
