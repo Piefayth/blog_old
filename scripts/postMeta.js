@@ -16,18 +16,14 @@ const getPostData = () => {
 
         let post = {}
         const doc = yaml.loadAll(content, (subDoc, i) => {
-            if (!post.meta && subDoc) {
+            if (subDoc.post) {
+                post.post = subDoc.post
+            } else if (subDoc.title) {
                 post.meta = subDoc
-            } else if (subDoc) {
-                post.post = subDoc
             }
         })
 
-        let regex = /^---[\w\W]+---[\r|\n]+([\w\W]+)$/g
-        let postContent = regex.exec(content)
-        post.post = postContent[1]
         post.meta.id = postId
-
         fs.writeFileSync(`./public/posts/${postId}.json`, JSON.stringify(post))
         posts.push(post)
     })

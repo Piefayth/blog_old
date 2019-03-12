@@ -12,12 +12,11 @@ import { withStyles } from '@material-ui/styles';
 import env from '../utils/env'
 
 const styles = (theme) => { 
-    console.log(theme)
     return {
         code: {
             display: 'block',
             'white-space': 'pre-wrap',
-            padding: '5px'
+            padding: '15px'
         },
         content: {
             'text-align': 'left',
@@ -57,7 +56,20 @@ const styles = (theme) => {
         postTitle: {
             color: theme.palette.text,
             marginTop: 25,
+        },
+        postSubtitle: {
+            marginTop: 10,
             marginBottom: 25,
+        },
+        markdownImage: {
+            display: 'block',
+            width: '80%',
+            height: '80%',
+        },
+        markdownImageContainer: {
+            display: 'flex',
+            'justify-content': 'center',
+            padding: 20,
         }
     }
 }
@@ -91,12 +103,24 @@ class Post extends Component {
                 <Typography className={classes.postTitle} variant='h2' component="p">
                     { post.meta.title }
                 </Typography>
+
+                <Typography className={classes.postSubtitle} variant='h5' component="p">
+                    { post.meta.subtitle }
+                </Typography>
+
                 <ReactMarkdown 
                     source={post.post}
                     className={classes.content}
                     renderers={{
                         code: (node) => {
                             return <p><code className={`prettyprint ${node.language}-html ${classes.code}`}>{ node.value }</code></p>
+                        },
+                        image: (node) => {
+                            return (
+                                <div className={classes.markdownImageContainer}>
+                                    <img className={classes.markdownImage} src={`${env.url}/media/${node.src}.jpg`} alt={node.alt} />
+                                </div>
+                            )
                         }
                     }}
                 />
