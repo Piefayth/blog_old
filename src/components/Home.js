@@ -12,6 +12,7 @@ import CardContent from '@material-ui/core/CardContent'
 import CardMedia from '@material-ui/core/CardMedia'
 import { Helmet } from "react-helmet";
 import env from '../utils/env'
+import { pageview } from '../utils/analytics'
 
 const styles = (theme) => { 
     return {
@@ -83,6 +84,7 @@ class Home extends Component {
     componentDidMount() {
         this.props.getPosts()
         document.title = "Piefayth's Devblog"
+        pageview(window, `/`)
     }
     
     render() {
