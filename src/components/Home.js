@@ -95,6 +95,11 @@ class Home extends Component {
                 <Helmet>
                     <meta name="keywords" content="unity, ecs, unity ecs, game development, gamedev" />
                     <meta name="description" content="A blog (mostly) about game development in Unity." />
+                    {posts.map((post, i) => {
+                        return (
+                            <link rel="canonical" href={`https://piefayth.github.io/blog/#!/posts/${post.meta.id}`} />
+                        )
+                    })}
                 </Helmet>
                 {posts.map((post, i) => {
                     return (
